@@ -1,0 +1,259 @@
+/* style.css (ПОВНА ЗАМІНА) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/* --- Базові налаштування --- */
+:root {
+    --color-text: #ffffff;
+    --color-text-dim: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000;
+    color: var(--color-text);
+    overflow: hidden; /* Забороняємо прокрутку */
+    line-height: 1.5;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { background: none; border: none; color: inherit; font: inherit; cursor: pointer; }
+
+/* === НОВИЙ МАКЕТ (Завдання 5: Full-screen) === */
+
+/* --- Шапка --- */
+.dodge-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+.dodge-logo img {
+    height: 20px;
+    width: auto;
+}
+.dodge-menu-btn {
+    font-size: 20px;
+}
+
+/* --- Контейнер Слайдера (тепер просто фон) --- */
+.slider-container {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+/* --- 2. Картинка (тепер це фон) --- */
+.slide-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Найнижчий шар */
+}
+.slide-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Заповнює екран, обрізаючи зайве */
+    
+    /* Додаємо легке затемнення, щоб текст читався краще */
+    filter: brightness(0.8);
+    
+    /* Анімація Fade */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s ease-in-out, visibility 1.2s;
+}
+.slide-image.is-active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2; /* Активний слайд поверх неактивних */
+}
+
+/* --- Елементи поверх картинки (z-index: 10) --- */
+
+/* --- 1. Інфо (зліва) --- */
+.slide-info {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+.slide-title {
+    font-size: 4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.slide-title span { display: block; }
+.slide-model-name {
+    font-size: 5rem;
+    transition: color 0.4s ease; /* Анімація кольору */
+}
+.slide-desc {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--color-text-dim);
+    margin-top: 20px;
+    max-width: 300px;
+}
+.slide-button {
+    margin-top: 30px;
+    border: 1px solid var(--color-text);
+    padding: 10px 20px;
+    width: 150px;
+    text-align: center;
+    font-weight: 700;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.slide-button:hover {
+    background-color: var(--color-text);
+    color: #000;
+}
+
+/* --- 3. Статистика (знизу) --- */
+.slide-stats {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    display: flex;
+    gap: 40px;
+    z-index: 10;
+}
+.stat-item {
+    font-weight: 300;
+}
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+.stat-label {
+    font-size: 1rem;
+    color: var(--color-text-dim);
+}
+
+/* --- 4. Навігація (справа) --- */
+.slider-nav {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+.slider-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    text-align: right;
+}
+
+/* --- Виправлення для Завдання 4 --- */
+.slider-nav-link {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    /* Колір тепер встановлюється через JS */
+    /* Затемнюємо неактивні */
+    opacity: 0.6; 
+    transition: opacity 0.3s, transform 0.3s;
+}
+.slider-nav-link.is-active {
+    /* Робимо активний яскравим та трохи більшим */
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* --- 5. Скрол (знизу) --- */
+.slider-scroll {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    font-size: 24px;
+    z-index: 10;
+    color: var(--color-text-dim);
+}
+
+
+/* style.css */
+
+/* === 10. ОНОВЛЕННЯ ДИЗАЙНУ (v3 - ФІНАЛЬНІ ПРАВКИ) === */
+
+/* --- 1. Логотип (залишається зменшеним) --- */
+.dodge-logo img {
+    height: 16px; 
+}
+
+/* --- 2. Базові стилі для позиціонування --- */
+.slide-info {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    /* * Базова позиція по Y. 
+     * Ми робимо її -60% (вище центру) для Viper, Charger, Challenger, Durango.
+     * RAM матиме своє, окреме правило.
+    */
+    transform: translateY(-60%); 
+    z-index: 10;
+    transition: all 0.5s ease-out; /* Плавний перехід позицій */
+}
+.slide-title {
+    display: flex;
+    flex-direction: column; /* "Dodge" зверху (для Challenger) */
+    line-height: 1;
+}
+.slide-desc {
+    margin-top: 20px;
+    margin-bottom: 30px; 
+}
+.slide-button {
+    margin-top: 0;
+}
+
+/* --- 3. Глобальне зменшення тексту (Завдання 1, 2, 3, 4) --- */
+/* Ми зменшуємо шрифт для 4 з 5 слайдів */
+.viper-active .slide-info,
+.charger-active .slide-info,
+.challenger-active .slide-info,
+.durango-active .slide-info {
+    font-size: 0.9rem; /* Зменшуємо базовий шрифт (для .slide-desc) */
+}
+.viper-active .slide-title,
+.charger-active .slide-title,
+.challenger-active .slide-title,
+.durango-active .slide-title {
+    font-size: 3.5rem; /* Зменшуємо заголовок (був 4rem) */
+}
+.viper-active .slide-model-name,
+.charger-active .slide-model-name,
+.challenger-active .slide-model-name,
+.durango-active .slide-model-name {
+    font-size: 4.5rem; /* Зменшуємо модель (була 5rem) */
+}
+
+/* --- 4. Кастомні позиції (Завдання 1, 4, 5) --- */
+
+/* * Viper, Charger, Challenger, Durango 
+ * тепер використовують однаковий зсув translateY(-60%) 
+ * та однаковий зменшений шрифт. 
+ * Правила для Durango (перенесення праворуч) видалено.
+ * Правило для Challenger (column-reverse) видалено.
+*/
+
+/* Завдання 5: RAM (ще вище) */
+.ram-active .slide-info {
+    transform: translateY(-65%); /* Трохи вище, ніж інші */
+}
