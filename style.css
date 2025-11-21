@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    --color-text: #ffffff;
+    --color-text-dim: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000;
+    color: var(--color-text);
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { background: none; border: none; color: inherit; font: inherit; cursor: pointer; }
+
+.dodge-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+.dodge-logo img {
+    height: 20px;
+    width: auto;
+}
+.dodge-menu-btn {
+    font-size: 20px;
+}
+
+.slider-container {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.slide-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.slide-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s ease-in-out, visibility 1.2s;
+}
+.slide-image.is-active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+.slide-info {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+.slide-title {
+    font-size: 4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.slide-title span { display: block; }
+.slide-model-name {
+    font-size: 5rem;
+    transition: color 0.4s ease;
+}
+.slide-desc {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--color-text-dim);
+    margin-top: 20px;
+    max-width: 300px;
+}
+.slide-button {
+    margin-top: 30px;
+    border: 1px solid var(--color-text);
+    padding: 10px 20px;
+    width: 150px;
+    text-align: center;
+    font-weight: 700;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.slide-button:hover {
+    background-color: var(--color-text);
+    color: #000;
+}
+
+.slide-stats {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    display: flex;
+    gap: 40px;
+    z-index: 10;
+}
+.stat-item {
+    font-weight: 300;
+}
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+.stat-label {
+    font-size: 1rem;
+    color: var(--color-text-dim);
+}
+
+.slider-nav {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+.slider-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    text-align: right;
+}
+
+.slider-nav-link {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 0.6; 
+    transition: opacity 0.3s, transform 0.3s;
+}
+.slider-nav-link.is-active {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.slider-scroll {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    font-size: 24px;
+    z-index: 10;
+    color: var(--color-text-dim);
+}
+
+.dodge-logo img {
+    height: 16px; 
+}
+
+.slide-info {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-60%); 
+    z-index: 10;
+    transition: all 0.5s ease-out;
+}
+.slide-title {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+.slide-desc {
+    margin-top: 20px;
+    margin-bottom: 30px; 
+}
+.slide-button {
+    margin-top: 0;
+}
+
+.viper-active .slide-info,
+.charger-active .slide-info,
+.challenger-active .slide-info,
+.durango-active .slide-info {
+    font-size: 0.9rem;
+}
+.viper-active .slide-title,
+.charger-active .slide-title,
+.challenger-active .slide-title,
+.durango-active .slide-title {
+    font-size: 3.5rem;
+}
+.viper-active .slide-model-name,
+.charger-active .slide-model-name,
+.challenger-active .slide-model-name,
+.durango-active .slide-model-name {
+    font-size: 4.5rem;
+}
+
+.ram-active .slide-info {
+    transform: translateY(-65%);
+}
